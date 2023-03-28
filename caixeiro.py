@@ -1,5 +1,4 @@
 import heapq
-import itertools
 import random
 import time
 
@@ -79,8 +78,9 @@ def caixeiro_bnb(dist):
                         num_subproblemas += 1
     return melhor_rota, custo_min, num_subproblemas
 
-def caixeiro_gerador(num_cidades, max_distance):
+def caixeiro_gerador(num_cidades):
     dist = [[0]*num_cidades for _ in range(num_cidades)]
+    max_distance = 10
     for i in range(num_cidades):
         for j in range(i+1, num_cidades):
             dist[i][j] = random.randint(1, max_distance)
@@ -92,14 +92,17 @@ def caixeiro_display(dist):
     for l in dist:
         print(l)
 
-dist = caixeiro_gerador(10, 10)
-caixeiro_display(dist)
+#caixeiro_display(dist)
 
-start_time = time.time()
-melhor_rota, custo_min, num_subproblemas = caixeiro_bnb(dist)
-time_taken = time.time() - start_time
+for i in range (0, 10):
+    dist = caixeiro_gerador(15)
+    start_time = time.time_ns()
+    melhor_rota, custo_min, num_subproblemas = caixeiro_bnb(dist)
+    time_taken = time.time_ns() - start_time
+    print(num_subproblemas)
+    print(f"{time_taken}")
 
-print(f"\nRota: {melhor_rota}")
-print(f"Z: {custo_min}")
-print(f"Subproblemas: {num_subproblemas}")
-print(f"Tempo decorrido: {time_taken:.12f} segundos")
+#print(f"\nRota: {melhor_rota}")
+#print(f"Z: {custo_min}")
+#print(f"Subproblemas: {num_subproblemas}")
+#print(f"Tempo decorrido: {time_taken:.2f} segundos")
