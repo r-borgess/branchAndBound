@@ -71,7 +71,7 @@ def mochila_display(items, capacidade):
     for item in items:
         print(f"{item[0]}\t{item[1]}\t{item[2]}")
 '''
-num_items = 50
+num_items = 30
 
 #mochila_display(items, capacidade)
 for i in range (0, 10):
