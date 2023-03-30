@@ -64,25 +64,22 @@ def mochila_gerador(num_items):
     pesos = [random.randint(1, 10) for _ in range(num_items)]
     items = [(i+1, valores[i], pesos[i]) for i in range(num_items)]
     return items, capacidade
-'''
+
 def mochila_display(items, capacidade):
     print(f"Capacidade: {capacidade}")
     print("Item\tValor\tPeso")
     for item in items:
         print(f"{item[0]}\t{item[1]}\t{item[2]}")
-'''
+
 num_items = 30
+items, capacidade = mochila_gerador(num_items)
 
-#mochila_display(items, capacidade)
-for i in range (0, 10):
-    items, capacidade = mochila_gerador(num_items)
-    inicio = time.time_ns()
-    selecionados, valor_max, num_subproblemas = mochila_bnb(items, capacidade)
-    decorrido = time.time_ns() - inicio
-    #print(f"{decorrido}")
-    print(num_subproblemas)
+mochila_display(items, capacidade)
+inicio = time.time_ns()
+selecionados, valor_max, num_subproblemas = mochila_bnb(items, capacidade)
+decorrido = time.time_ns() - inicio
 
-#print(f"\nItens: {selecionados}")
-#print(f"Z: {valor_max}")
-#print(f"Subproblemas: {num_subproblemas}")
-#print(f"Tempo decorrido: {decorrido:.2f} segundos")
+print(f"\nItens: {selecionados}")
+print(f"Z: {valor_max}")
+print(f"Subproblemas: {num_subproblemas}")
+print(f"Tempo decorrido: {decorrido:.2f} segundos")

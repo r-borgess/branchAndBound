@@ -87,22 +87,18 @@ def caixeiro_gerador(num_cidades):
             dist[j][i] = dist[i][j]
     return dist
 
+dist = caixeiro_gerador(5)
 def caixeiro_display(dist):
     print("Matriz de distâncias:")
     for l in dist:
         print(l)
 
-#caixeiro_display(dist)
+caixeiro_display(dist)
+start_time = time.time_ns()
+melhor_rota, custo_min, num_subproblemas = caixeiro_bnb(dist)
+time_taken = time.time_ns() - start_time
 
-for i in range (0, 10):
-    dist = caixeiro_gerador(15)
-    start_time = time.time_ns()
-    melhor_rota, custo_min, num_subproblemas = caixeiro_bnb(dist)
-    time_taken = time.time_ns() - start_time
-    print(num_subproblemas)
-    print(f"{time_taken}")
-
-#print(f"\nRota: {melhor_rota}")
-#print(f"Z: {custo_min}")
-#print(f"Subproblemas: {num_subproblemas}")
-#print(f"Tempo decorrido: {time_taken:.2f} segundos")
+print(f"\nRota: {melhor_rota}")
+print(f"Z: {custo_min}")
+print(f"Subproblemas: {num_subproblemas}")
+print(f"Tempo decorrido: {time_taken:.2f} segundos")
